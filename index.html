@@ -115,23 +115,7 @@
             }
         }
 
-        @keyframes typewriter {
-            0% {
-                width: 0;
-            }
-            100% {
-                width: 100%;
-            }
-        }
 
-        @keyframes blink {
-            0%, 50%, 100% {
-                opacity: 1;
-            }
-            51%, 99% {
-                opacity: 0;
-            }
-        }
 
         /* Header/Navigation */
         header {
@@ -262,13 +246,7 @@
             font-weight: 500;
         }
 
-        .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            border-right: 3px solid var(--accent);
-            animation: typewriter 4s steps(40, end), blink 0.75s step-end infinite;
-            white-space: nowrap;
-        }
+
 
         .hero-description {
             color: var(--bg-light);
@@ -324,7 +302,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: float 6s ease-in-out infinite;
         }
 
         .profile-image {
@@ -332,10 +309,7 @@
             height: 300px;
             border-radius: 50%;
             overflow: hidden;
-            border: 4px solid;
-            border-image: linear-gradient(135deg, var(--accent), var(--orange)) 1;
             box-shadow: 0 0 50px rgba(245, 193, 0, 0.3), inset 0 0 30px rgba(212, 99, 26, 0.2);
-            animation: glow 3s ease-in-out infinite;
             position: relative;
         }
 
@@ -911,16 +885,14 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">DIEGO<br>FORGANES</h1>
-                <p class="hero-subtitle">
-                    <span class="typewriter">Desenvolvedor Full Stack · +15 anos de experiência</span>
-                </p>
+                <p class="hero-subtitle">Desenvolvedor Full Stack · +15 anos de experiência</p>
                 <p class="hero-description">
                     Especializado em criar soluções inovadoras que impulsionam negócios. Com experiência em arquitetura de sistemas de alta performance, infraestrutura em nuvem e desenvolvimento full-stack moderno.
                 </p>
                 <div class="cta-buttons">
-                    <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' })">
+                    <a href="https://github.com/diforg" target="_blank" class="btn btn-primary">
                         Ver Projetos
-                    </button>
+                    </a>
                     <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">
                         Fale Comigo
                     </button>
