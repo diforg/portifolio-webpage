@@ -1,10 +1,1345 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Diforg.com.br</title>
-  </head>
-  <body>
-    <h1>Bem vindo ao meu site</h1>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Forganes - Full Stack Developer</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Devicons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent: #F5C100;
+            --accent-light: #FFD700;
+            --bg-dark: #1A1209;
+            --bg-mid: #2E1E0A;
+            --bg-light: #F5EDD6;
+            --orange: #D4631A;
+            --orange-dark: #A83D0D;
+            --text-light: #FAF3E0;
+            --text-dark: #1A1209;
+            --border-color: rgba(245, 193, 0, 0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animações Base */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(245, 193, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(245, 193, 0, 0.8);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes counter {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes typewriter {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            51%, 99% {
+                opacity: 0;
+            }
+        }
+
+        /* Header/Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 18, 9, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-mid) 100%);
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(245, 193, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 99, 26, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: bold;
+            color: var(--accent);
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            min-height: 35px;
+            font-weight: 500;
+        }
+
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid var(--accent);
+            animation: typewriter 4s steps(40, end), blink 0.75s step-end infinite;
+            white-space: nowrap;
+        }
+
+        .hero-description {
+            color: var(--bg-light);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            font-family: "DM Sans", sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(245, 193, 0, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-dark);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            box-shadow: 0 10px 40px rgba(245, 193, 0, 0.4);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid;
+            border-image: linear-gradient(135deg, var(--accent), var(--orange)) 1;
+            box-shadow: 0 0 50px rgba(245, 193, 0, 0.3), inset 0 0 30px rgba(212, 99, 26, 0.2);
+            animation: glow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        /* Seção Sobre */
+        .about {
+            background: var(--bg-dark);
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--accent);
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.9;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            background: rgba(245, 193, 0, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 4px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stat:nth-child(1) { animation-delay: 0.1s; }
+        .stat:nth-child(2) { animation-delay: 0.2s; }
+        .stat:nth-child(3) { animation-delay: 0.3s; }
+
+        .stat-number {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--bg-light);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Seção Skills */
+        .skills {
+            background: linear-gradient(135deg, var(--bg-mid) 0%, var(--bg-dark) 100%);
+            padding: 5rem 2rem;
+        }
+
+        .skills-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .skill-category {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .skill-category:nth-child(1) { animation-delay: 0.1s; }
+        .skill-category:nth-child(2) { animation-delay: 0.2s; }
+        .skill-category:nth-child(3) { animation-delay: 0.3s; }
+
+        .skill-category-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: rgba(245, 193, 0, 0.15);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(245, 193, 0, 0.3);
+        }
+
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-icon i {
+            font-size: 1rem;
+        }
+
+        /* Seção Experiência */
+        .experience {
+            background: var(--bg-dark);
+            padding: 5rem 2rem;
+        }
+
+        .experience-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 51%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 51%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 4px solid var(--bg-dark);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(245, 193, 0, 0.5);
+        }
+
+        .timeline-content {
+            background: rgba(245, 193, 0, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 30px rgba(245, 193, 0, 0.2);
+            background: rgba(245, 193, 0, 0.15);
+        }
+
+        .timeline-company {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .timeline-period {
+            color: var(--orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-position {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--bg-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .timeline-description ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Seção Educação */
+        .education {
+            background: linear-gradient(135deg, var(--bg-mid) 0%, var(--bg-dark) 100%);
+            padding: 5rem 2rem;
+        }
+
+        .education-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .education-card, .languages-card {
+            background: rgba(245, 193, 0, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .education-card:hover, .languages-card:hover {
+            border-color: var(--accent);
+            background: rgba(245, 193, 0, 0.15);
+            box-shadow: 0 8px 30px rgba(245, 193, 0, 0.2);
+        }
+
+        .education-card:nth-child(1) { animation-delay: 0.1s; }
+        .education-card:nth-child(2) { animation-delay: 0.2s; }
+
+        .card-title {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-meta {
+            color: var(--orange);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            color: var(--bg-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .language-item {
+            margin-bottom: 2rem;
+        }
+
+        .language-name {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .language-level {
+            color: var(--orange);
+            font-size: 0.85rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(245, 193, 0, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--orange));
+            border-radius: 4px;
+            animation: counter 1.5s ease-out;
+        }
+
+        /* Seção Contato */
+        .contact {
+            background: var(--bg-dark);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-tagline {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--accent);
+            margin-bottom: 3rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .contact-link:hover {
+            transform: translateY(-5px);
+            color: var(--accent);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover .contact-icon {
+            color: var(--accent-light);
+            filter: drop-shadow(0 0 10px rgba(245, 193, 0, 0.5));
+        }
+
+        .contact-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(26, 18, 9, 0.95);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--bg-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(26, 18, 9, 0.98);
+                gap: 0;
+                padding: 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .highlight-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item {
+                padding-left: 60px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                gap: 1rem;
+            }
+
+            .contact-link {
+                padding: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+        }
+
+        .reveal.active {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <div class="logo">DIEGO</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experiência</a></li>
+                <li><a href="#education">Educação</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">DIEGO<br>FORGANES</h1>
+                <p class="hero-subtitle">
+                    <span class="typewriter">Desenvolvedor Full Stack · +15 anos de experiência</span>
+                </p>
+                <p class="hero-description">
+                    Especializado em criar soluções inovadoras que impulsionam negócios. Com experiência em arquitetura de sistemas de alta performance, infraestrutura em nuvem e desenvolvimento full-stack moderno.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' })">
+                        Ver Projetos
+                    </button>
+                    <button class="btn" onclick="document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' })">
+                        Fale Comigo
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="profile-image">
+                    <img src="avatar.png" alt="Diego Forganes">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Sou um desenvolvedor Full Stack apaixonado por tecnologia com mais de 15 anos de experiência em desenvolvimento de software. Minha jornada começou com uma forte formação em Análise e Desenvolvimento de Sistemas pela Fatec Praia Grande, e desde então tenho evoluído constantemente acompanhando as tendências e melhores práticas do mercado.
+                    </p>
+                    <p>
+                        Especializado em criar arquiteturas escaláveis, otimizar performance e implementar soluções robustas que resolvem problemas complexos. Tenho experiência sólida com tecnologias modernas de frontend, backend e infraestrutura em nuvem.
+                    </p>
+                </div>
+                <div>
+                    <div class="highlight-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-target="15">0</div>
+                            <div class="stat-label">Anos de Experiência</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="50">0</div>
+                            <div class="stat-label">Mil Transações/Dia</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="500">0</div>
+                            <div class="stat-label">Mil Eventos/Mês</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="skills-grid">
+            <!-- Frontend -->
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    💻 Front-End
+                </h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-react-original"></i></span> React
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-typescript-plain"></i></span> TypeScript
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-vuejs-plain"></i></span> Vue.js
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-nextjs-original"></i></span> Next.js
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-html5-plain"></i></span> HTML5
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-css3-plain"></i></span> CSS3
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-javascript-plain"></i></span> JavaScript
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-sass-original"></i></span> SASS
+                    </span>
+                </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    🔧 Back-End
+                </h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-nodejs-plain"></i></span> Node.js
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-python-plain"></i></span> Python
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-php-plain"></i></span> PHP
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-java-plain"></i></span> Java
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-postgresql-plain"></i></span> PostgreSQL
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-mongodb-plain"></i></span> MongoDB
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-redis-plain"></i></span> Redis
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-mysql-plain"></i></span> MySQL
+                    </span>
+                </div>
+            </div>
+
+            <!-- Infraestrutura -->
+            <div class="skill-category">
+                <h3 class="skill-category-title">
+                    ☁️ Infraestrutura
+                </h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-docker-plain"></i></span> Docker
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-kubernetes-plain"></i></span> Kubernetes
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-aws-original"></i></span> AWS
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-googlecloud-plain"></i></span> GCP
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-git-plain"></i></span> Git
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-linux-plain"></i></span> Linux
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-nginx-original"></i></span> Nginx
+                    </span>
+                    <span class="skill-tag">
+                        <span class="skill-icon"><i class="devicon-terraform-plain"></i></span> Terraform
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="experience-container">
+            <h2 class="section-title">Experiência</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">PURAVIDA</div>
+                        <div class="timeline-period">2023 – 2025</div>
+                        <div class="timeline-position">Full Stack Developer Senior</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Arquitetura e desenvolvimento de plataforma de ecommerce escalável em Next.js</li>
+                                <li>Otimização de performance resultando em 40% aumento de conversão</li>
+                                <li>Implementação de microserviços com Node.js e Docker</li>
+                                <li>Liderança técnica de equipe de 5 desenvolvedores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">X GROW</div>
+                        <div class="timeline-period">2022 – 2023</div>
+                        <div class="timeline-position">Full Stack Developer</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Desenvolvimento de plataforma de gestão com React e PostgreSQL</li>
+                                <li>Integração de APIs REST e GraphQL</li>
+                                <li>Implementação de sistema de cache com Redis</li>
+                                <li>Testes automatizados e CI/CD com GitHub Actions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-company">BACKSITE</div>
+                        <div class="timeline-period">2008 – 2021</div>
+                        <div class="timeline-position">Full Stack Developer & Tech Lead</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Desenvolvimento de plataforma de transações processando 50k/dia</li>
+                                <li>Otimização de banco de dados e queries complexas</li>
+                                <li>Migração de arquitetura monolítica para microsserviços</li>
+                                <li>Implementação de infraestrutura em AWS com alta disponibilidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="education-container">
+            <h2 class="section-title">Educação & Idiomas</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="card-title">📚 EDUCAÇÃO</div>
+                    <div class="card-subtitle">Fatec Praia Grande</div>
+                    <div class="card-meta">Conclusão: Julho 2026</div>
+                    <div class="card-text">
+                        <strong>Análise e Desenvolvimento de Sistemas</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                            Formação sólida em desenvolvimento de software, arquitetura de sistemas, banco de dados, programação orientada a objetos e metodologias ágeis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="languages-card">
+                    <div class="card-title">🌍 IDIOMAS</div>
+                    <div class="language-item">
+                        <div class="language-name">
+                            Português
+                            <span class="language-level">Avançado</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">
+                            Inglês
+                            <span class="language-level">Intermediário</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Vamos Construir Algo Incrível</h2>
+            <p style="color: var(--bg-light); font-size: 1.1rem; margin-bottom: 2rem;">
+                Estou sempre aberto a novas oportunidades e colaborações. Entre em contato!
+            </p>
+            
+            <div class="contact-links">
+                <a href="https://wa.me/5513992098983" target="_blank" class="contact-link">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-text">+55 13 99209-8983</div>
+                </a>
+                <a href="mailto:diforg@gmail.com" class="contact-link">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">diforg@gmail.com</div>
+                </a>
+                <a href="https://linkedin.com/in/diforg" target="_blank" class="contact-link">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-text">linkedin.com/in/diforg</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Diego Forganes. Todos os direitos reservados. Desenvolvido com <span style="color: var(--accent);">❤️</span></p>
+    </footer>
+
+    <!-- Pseudo sections for CTA buttons -->
+    <section id="projects" style="display: none;"></section>
+
+    <script>
+        // Menu Hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal com IntersectionObserver
+        const revealElements = document.querySelectorAll('.reveal, .about-grid, .stat, .skill-category, .timeline-item, .education-card, .languages-card');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contador de Números
+        function animateCounter(element, target) {
+            const duration = 1500;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Iniciar contadores quando a seção ficar visível
+        const statsSection = document.querySelector('.about');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = true;
+                    document.querySelectorAll('.stat-number').forEach(stat => {
+                        const target = parseInt(stat.dataset.target);
+                        animateCounter(stat, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        statsObserver.observe(statsSection);
+
+        // Animar barras de progresso de idiomas
+        const languagesCard = document.querySelector('.languages-card');
+        const languagesObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = true;
+                    document.querySelectorAll('.progress-fill').forEach((fill, index) => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.transition = 'width 1.5s ease-out';
+                            fill.style.width = width;
+                        }, 100 * (index + 1));
+                    });
+                    languagesObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        languagesObserver.observe(languagesCard);
+
+        // Highlight na navegação ao fazer scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.color = 'var(--text-light)';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--accent)';
+                }
+            });
+        });
+
+        // Smooth scroll adicional para melhor compatibilidade
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
